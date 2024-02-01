@@ -42,9 +42,7 @@ public class BranchesAndPullRequestsBuildFeature extends BuildFeature {
 
     @Override
     public String describeParameters(Map<String, String> params) {
-        StringBuilder result = new StringBuilder();
-        result.append("Provider: ").append(params.get("provider"));
-        return result.toString();
+        return "Adds support for branches and pull request decoration";
     }
 
     @Override

@@ -26,7 +26,6 @@ public class BranchesAndPullRequestsParametersPreprocessor implements Parameters
     public void fixRunBuildParameters(SRunningBuild build, Map<String, String> runParameters, Map<String, String> buildParams) {
 
         if (build.getBuildFeaturesOfType(BranchesAndPullRequestsBuildFeature.BUILD_FEATURE_TYPE).isEmpty() || buildParams.containsKey(SQS_SYSENV)) {
-            // Currently only GitHub is supported => if feature defined, it is for GitHub
             // ParametersPreprocessor is called for each steps (or could be defined manually). So if sysenv already defined, skip process.
             return;
         }
@@ -56,16 +55,9 @@ public class BranchesAndPullRequestsParametersPreprocessor implements Parameters
         } else {
             // Pull Request
             type = "pull-request";
-            String repo = buildParams.get("vcsroot.url");
-            repo = repo.replaceFirst("^git@.*:", "");
-            repo = repo.replaceFirst("^https?://[^/]*/", "");
-            repo = repo.replaceFirst("\\.git$", "");
-
             json.addProperty("sonar.pullrequest.key", prNumber);
             json.addProperty("sonar.pullrequest.branch", buildParams.get("teamcity.pullRequest.title"));
             json.addProperty("sonar.pullrequest.base", buildParams.get("teamcity.pullRequest.target.branch"));
-            json.addProperty("sonar.pullrequest.provider", "github");
-            json.addProperty("sonar.pullrequest.github.repository", repo);
         }
 
         final String jsonString = json.toString();

@@ -40,7 +40,6 @@ public class BranchesAndPullRequestsBuildStartContextProcessor implements BuildS
 
         if (context.getBuild().getBuildFeaturesOfType(BranchesAndPullRequestsBuildFeature.BUILD_FEATURE_TYPE).isEmpty()
                 || context.getSharedParameters().containsKey(SQS_SYSENV)) {
-            // Currently only GitHub is supported => if feature defined, it is for GitHub
             // If sysenv already defined (outside this processor), skip process.
             return;
         }
@@ -70,16 +69,9 @@ public class BranchesAndPullRequestsBuildStartContextProcessor implements BuildS
         } else {
             // Pull Request
             type = "pull-request";
-            String repo = context.getSharedParameters().get("vcsroot.url");
-            repo = repo.replaceFirst("^git@.*:", "");
-            repo = repo.replaceFirst("^https?://[^/]*/", "");
-            repo = repo.replaceFirst("\\.git$", "");
-
             json.addProperty("sonar.pullrequest.key", prNumber);
             json.addProperty("sonar.pullrequest.branch", context.getSharedParameters().get("teamcity.pullRequest.title"));
             json.addProperty("sonar.pullrequest.base", context.getSharedParameters().get("teamcity.pullRequest.target.branch"));
-            json.addProperty("sonar.pullrequest.provider", "github");
-            json.addProperty("sonar.pullrequest.github.repository", repo);
         }
 
         final String jsonString = json.toString();

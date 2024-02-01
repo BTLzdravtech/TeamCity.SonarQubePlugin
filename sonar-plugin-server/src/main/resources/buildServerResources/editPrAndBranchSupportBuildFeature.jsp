@@ -10,10 +10,4 @@
                     Edition or above</a>).
         </em></td>
     </tr>
-    <tr>
-        <th><label>Provider:<l:star /></label></th>
-        <td><props:selectProperty name="provider">
-                <props:option value="GitHub">GitHub</props:option>
-            </props:selectProperty></td>
-    </tr>
 </table>

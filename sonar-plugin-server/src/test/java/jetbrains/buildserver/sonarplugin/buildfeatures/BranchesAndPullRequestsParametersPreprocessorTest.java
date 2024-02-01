@@ -59,7 +59,7 @@ public class BranchesAndPullRequestsParametersPreprocessorTest {
 
         Assert.assertTrue(buildParams.containsKey(SQS_SYSENV));
         Assert.assertEquals(buildParams.get(SQS_SYSENV),
-                "{\"sonar.pullrequest.key\":\"1\",\"sonar.pullrequest.branch\":\"Update README.md\",\"sonar.pullrequest.base\":\"master\",\"sonar.pullrequest.provider\":\"github\",\"sonar.pullrequest.github.repository\":\"orga-test/repo-test\"}");
+                "{\"sonar.pullrequest.key\":\"1\",\"sonar.pullrequest.branch\":\"Update README.md\",\"sonar.pullrequest.base\":\"master\"}");
     }
 
     @Test
@@ -75,7 +75,7 @@ public class BranchesAndPullRequestsParametersPreprocessorTest {
 
         Assert.assertTrue(buildParams.containsKey(SQS_SYSENV));
         Assert.assertEquals(buildParams.get(SQS_SYSENV),
-                "{\"sonar.pullrequest.key\":\"42\",\"sonar.pullrequest.branch\":\"Update README.md\",\"sonar.pullrequest.base\":\"master\",\"sonar.pullrequest.provider\":\"github\",\"sonar.pullrequest.github.repository\":\"orga-test/repo-test\"}");
+                "{\"sonar.pullrequest.key\":\"42\",\"sonar.pullrequest.branch\":\"Update README.md\",\"sonar.pullrequest.base\":\"master\"}");
     }
 
     @Test
@@ -91,7 +91,7 @@ public class BranchesAndPullRequestsParametersPreprocessorTest {
 
         Assert.assertTrue(buildParams.containsKey(SQS_SYSENV));
         Assert.assertEquals(buildParams.get(SQS_SYSENV),
-                "{\"sonar.pullrequest.key\":\"1\",\"sonar.pullrequest.branch\":\"Update README.md\",\"sonar.pullrequest.base\":\"master\",\"sonar.pullrequest.provider\":\"github\",\"sonar.pullrequest.github.repository\":\"orga-test/repo-test\"}");
+                "{\"sonar.pullrequest.key\":\"1\",\"sonar.pullrequest.branch\":\"Update README.md\",\"sonar.pullrequest.base\":\"master\"}");
     }
 
     @Test
